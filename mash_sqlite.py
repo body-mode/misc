@@ -96,7 +96,8 @@ class mash_sqlite():
 		conn.commit()
 		
 	def make_db(self):
-		self.make_df()
+		self.import_csv()
+		self.import_dbf()
 		self.enforce_types()
 		self.make_specs()
 		self.build_tablestr()

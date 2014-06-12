@@ -62,15 +62,12 @@ class mash_sqlite():
 		print "writing connection string to tablestr_d..."
 		for z in self.d.keys():
 			for j in self.spec_d[z].keys():
-				if 'ID' in j:
+				if 'int' in self.spec_d[z][j]:
 					self.spec_d[z][j] = 'INTEGER'
-				else:
-					if 'int' in self.spec_d[z][j]:
-						self.spec_d[z][j] = 'INTEGER'
-					if 'float' in self.spec_d[z][j]:
-						self.spec_d[z][j] = 'FLOAT'
-					if self.spec_d[z][j] == 'object':
-						self.spec_d[z][j] = 'TEXT'
+				if 'float' in self.spec_d[z][j]:
+					self.spec_d[z][j] = 'FLOAT'
+				if self.spec_d[z][j] == 'object':
+					self.spec_d[z][j] = 'TEXT'
 			
 			tablestr = [' '.join([i, k]) for i, k in self.spec_d[z].items()]
 			tablestr = ', '.join(tablestr)
